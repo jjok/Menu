@@ -1,12 +1,12 @@
 <?php
 
-require_once '../src/jjok/Menu2/Menu.php';
-require_once '../src/jjok/Menu2/MenuBuilder.php';
-require_once '../src/jjok/Menu2/Item.php';
+require_once '../src/jjok/Menu/Menu.php';
+require_once '../src/jjok/Menu/MenuBuilder.php';
+require_once '../src/jjok/Menu/Item.php';
 
-use jjok\Menu2\Item;
-use jjok\Menu2\Menu;
-use jjok\Menu2\MenuBuilder;
+use jjok\Menu\Item;
+use jjok\Menu\Menu;
+use jjok\Menu\MenuBuilder;
 
 $menu = new Menu(array(
 	new Item('some text1', 'demo.php'),

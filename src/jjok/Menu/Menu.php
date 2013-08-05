@@ -1,6 +1,6 @@
 <?php
 
-namespace jjok\Menu2;
+namespace jjok\Menu;
 
 /**
  * 
