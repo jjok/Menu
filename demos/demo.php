@@ -32,13 +32,13 @@ $menu = new Menu(array(
 ));
 
 # Get the current URL
-$current_url = '#^demo.php$#';
+$current_url = 'demo.php';
 if(!empty($_SERVER['QUERY_STRING'])) {
-	$current_url = sprintf('#^demo.php\?%s$#', $_SERVER['QUERY_STRING']);
+	$current_url = sprintf('demo.php?%s', $_SERVER['QUERY_STRING']);
 }
 
 foreach (new RecursiveIteratorIterator($menu, RecursiveIteratorIterator::SELF_FIRST) as $item) {
-	if(preg_match($current_url, $item->getHref()) === 1) {
+	if($current_url == $item->getHref()) {
 		$item->setIsCurrent(true);
 		$item->setHref(null);
 	}
