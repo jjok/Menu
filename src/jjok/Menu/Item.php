@@ -3,14 +3,14 @@
 namespace jjok\Menu;
 
 /**
- *
+ * A menu item.
  * @author Jonathan Jefferies
  * @version 0.1.0
  */
 class Item {
 	
 	/**
-	 * 
+	 * The text of the menu item.
 	 * @var string
 	 */
 	protected $text;
@@ -22,7 +22,7 @@ class Item {
 	protected $href;
 	
 	/**
-	 * 
+	 * A sub menu.
 	 * @var Menu
 	 */
 	protected $sub_menu;
