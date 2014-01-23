@@ -1,6 +1,6 @@
 <?php
 
-namespace jjok\Menu\Finder;
+namespace jjok\Menu\Item;
 
 use Closure;
 use RecursiveIteratorIterator;
@@ -9,7 +9,7 @@ use RecursiveIteratorIterator;
  * Finds items in a menu.
  * @author Jonathan Jefferies
  */
-class ItemFinder {
+class Finder {
 
 	protected $iterator;
 	
