@@ -39,13 +39,13 @@ if(!empty($_SERVER['QUERY_STRING'])) {
 	$current_url = sprintf('demo.php?%s', $_SERVER['QUERY_STRING']);
 }
 
-$finder = new Finder(
-	new RecursiveIteratorIterator(
-		$menu,
-		RecursiveIteratorIterator::SELF_FIRST
-	)
-);
-foreach($finder->findByHref($current_url) as $item) {
+// $finder = new Finder(
+// 	new RecursiveIteratorIterator(
+// 		$menu,
+// 		RecursiveIteratorIterator::SELF_FIRST
+// 	)
+// );
+foreach(Finder::create($menu)->findByHref($current_url) as $item) {
 	$item->setIsCurrent(true);
 	$item->setHref(null);
 }
@@ -61,9 +61,19 @@ $built_menu = $builder->build($menu);
 <title>Menu test</title>
 <style>
 	a.current { background:red; }
+	
+	#nav2 ul { margin:0; padding:0; list-style:none; }
+	#nav2 ul li { position:relative; }
+	#nav2 > ul > li { display:inline; }
+	#nav2 > ul > li ul { position:absolute; left:0; top:2.3em; }
+	#nav2 > ul > li ul ul { left:100%; top:0; }
+	#nav2 li ul { display:none; /*transition-property:bottom; transition-duration:2s; bottom:-100%;*/ }
+	#nav2 li:hover > ul { display:block; /*bottom:0;*/ }
+	#nav2 a { display:inline-block; padding:1em; outline:1px solid black; }
 </style>
 </head>
 <body>
 <nav><?php echo $built_menu; ?></nav>
+<nav id="nav2"><?php echo $built_menu; ?></nav>
 </body>
 </html>
