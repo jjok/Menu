@@ -3,6 +3,7 @@
 namespace jjok\Menu\Item;
 
 use Closure;
+use jjok\Menu\Menu;
 use RecursiveIteratorIterator;
 
 /**
@@ -11,6 +12,10 @@ use RecursiveIteratorIterator;
  */
 class Finder {
 
+	/**
+	 * 
+	 * @var RecursiveIteratorIterator
+	 */
 	protected $iterator;
 	
 	/**
@@ -19,6 +24,15 @@ class Finder {
 	 */
 	public function __construct(RecursiveIteratorIterator $iterator) {
 		$this->iterator = $iterator;
+	}
+	
+	public static function create(Menu $menu) {
+		return new static(
+			new RecursiveIteratorIterator(
+				$menu,
+				RecursiveIteratorIterator::SELF_FIRST
+			)
+		);
 	}
 	
 	/**
@@ -61,5 +75,5 @@ class Finder {
 		}
 		
 		return $results;
-	} 
+	}
 }
