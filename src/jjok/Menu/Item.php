@@ -5,7 +5,7 @@ namespace jjok\Menu;
 /**
  * A menu item.
  * @author Jonathan Jefferies
- * @version 0.1.0
+ * @version 0.2.0
  */
 class Item {
 	

@@ -1,12 +1,14 @@
 <?php
 
 require_once '../src/jjok/Menu/Menu.php';
-require_once '../src/jjok/Menu/MenuBuilder.php';
+require_once '../src/jjok/Menu/Builder.php';
 require_once '../src/jjok/Menu/Item.php';
+require_once '../src/jjok/Menu/Item/Finder.php';
 
+use jjok\Menu\Item\Finder;
 use jjok\Menu\Item;
 use jjok\Menu\Menu;
-use jjok\Menu\MenuBuilder;
+use jjok\Menu\Builder;
 
 $menu = new Menu(array(
 	new Item('some text1', 'demo.php'),
@@ -37,14 +39,18 @@ if(!empty($_SERVER['QUERY_STRING'])) {
 	$current_url = sprintf('demo.php?%s', $_SERVER['QUERY_STRING']);
 }
 
-foreach (new RecursiveIteratorIterator($menu, RecursiveIteratorIterator::SELF_FIRST) as $item) {
-	if($current_url == $item->getHref()) {
-		$item->setIsCurrent(true);
-		$item->setHref(null);
-	}
+$finder = new Finder(
+	new RecursiveIteratorIterator(
+		$menu,
+		RecursiveIteratorIterator::SELF_FIRST
+	)
+);
+foreach($finder->findByHref($current_url) as $item) {
+	$item->setIsCurrent(true);
+	$item->setHref(null);
 }
 
-$builder = new MenuBuilder();
+$builder = new Builder();
 $built_menu = $builder->build($menu);
 
 ?>
